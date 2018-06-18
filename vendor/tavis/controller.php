@@ -18,9 +18,4 @@ class Controller
     {
         return $this->method() == 'POST';
     }
-
-    public function isWhiteList($request)
-    {
-        return in_array($request->addr, Config::get('white_list'));
-    }
 }

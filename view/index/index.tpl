@@ -1,3 +1,5 @@
+<h1>Home page</h1>
+<br>
 <table class="table">
   <thead>
     <tr>

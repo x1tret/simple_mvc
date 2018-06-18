@@ -21,8 +21,10 @@ class DB
         if ( ! $this->db)
             $this->db = DOC_ROOT . '/data/'. APP_ENV . '.json';
 
-        if (!file_exists($this->db))
-            die("File not exist: {$this->db}");
+        if (!file_exists($this->db)) {
+            $db = fopen($this->db, "w+") or die("Unable to open $this->db!");
+            fclose($db);
+        }
 
         return $this->db;
     }
@@ -46,7 +48,7 @@ class DB
         }
 
         $json = $this->filterTable($json);
-        return $json;
+        return $json ?: [];
     }
 
     public function find($id)
@@ -57,7 +59,14 @@ class DB
             return;
 
         $current['id'] = $id;
-        foreach ($current as $key => $value)
+        $this->toObject($current);
+
+        return $this;
+    }
+
+    private function toObject($data)
+    {
+        foreach ($data as $key => $value)
             $this->$key = $value;
 
         return $this;
@@ -74,7 +83,7 @@ class DB
         if ( ! count($arr))
             return;
 
-        if ($this->id) {
+        if ($this->id === '0' || $this->id) {
             if ( ! isset($all[$this->id]))
                 die('Cannot found this record');
             $current = $all[$this->id];
@@ -89,6 +98,6 @@ class DB
 
         file_put_contents($this->db, json_encode($all));
 
-        return $current;
+        return $this->toObject($current);
     }
 }

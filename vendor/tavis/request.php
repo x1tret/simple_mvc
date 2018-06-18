@@ -12,7 +12,7 @@ class Request
 
     public function __construct()
     {
-        $this->uri = isset($_REQUEST['q']) ? $_REQUEST['q'] : '/';
+        $this->uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
         $this->host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'mercari.ductai.me';
         $this->addr = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
     }

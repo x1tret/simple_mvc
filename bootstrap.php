@@ -26,12 +26,27 @@ class Bootstrap
             '/vendor/tavis/*.php',
             '/controller/*.php',
             '/model/*.php',
+            '/util/*.php',
         ];
         foreach ($arr as $dir) {
             $arr_files = glob(DOC_ROOT.$dir);
             foreach ($arr_files as $filename)
                 include_once $filename;
         }
+    }
+
+    public static function run()
+    {
+        $timezone = Config::get('timezone');
+        if ($timezone)
+            date_default_timezone_set($timezone);
+    }
+
+    public static function loadTest()
+    {
+        $arr_files = glob(DOC_ROOT.'/test/*.php');
+        foreach ($arr_files as $filename)
+            include_once $filename;
     }
 }
 

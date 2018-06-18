@@ -10,7 +10,7 @@ class BannerController extends BaseController
 
     public function addAction()
     {
-        $msg = [];
+        $view_data = [];
         if ($this->isPost()) {
             $data = Request::input();
             $valid = Validation::forge([
@@ -24,10 +24,13 @@ class BannerController extends BaseController
 
             $banner = new BannerModel();
             $banner->saveData($data);
-            $msg['success'] = 'Saved banner successfully!';
+            $view_data = [
+                'banner'  => $banner,
+                'success' => 'Saved banner successfully!',
+            ];
         }
 
-        return View::render('banner/add', $msg);
+        return View::render('banner/add', $view_data);
     }
 
     public function editAction($id)
@@ -49,7 +52,10 @@ class BannerController extends BaseController
                 return View::render('banner/add', ['error' => $valid->getError()]);
 
             $banner->saveData($data);
-            $view_data['success'] = 'Saved banner successfully!';
+            $view_data = [
+                'banner'  => $banner,
+                'success' => 'Saved banner successfully!',
+            ];
         }
 
         return View::render('banner/edit', $view_data);

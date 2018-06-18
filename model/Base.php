@@ -12,6 +12,13 @@ class BaseModel extends DB
         return self::$instance;
     }
 
+    public static function forge()
+    {
+        $class_name = get_called_class();
+        $instance = new $class_name();
+        return $instance;
+    }
+
     public function saveData($data = [])
     {
         $data['updated_date'] = time();
@@ -20,14 +27,13 @@ class BaseModel extends DB
 
         $data['start_date'] = strtotime($data['start_date']);
         $data['end_date'] = strtotime($data['end_date']);
-        $instance = self::getInstance();
-        $this->save($data);
+
+        return $this->save($data);
     }
 
     public static function getOne($id)
     {
-        $class_name = get_called_class();
-        $instance = new $class_name();
+        $instance = self::forge();
         return $instance->find($id);
     }
 

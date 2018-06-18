@@ -4,7 +4,10 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        $result = BannerModel::getActive();
+        if (Util::isWhiteList($this->request->addr))
+            $result = BannerModel::getAll();
+        else
+            $result = BannerModel::getActive();
         return View::render('index/index', ['result'  => $result]);
     }
 }

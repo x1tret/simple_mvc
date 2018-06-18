@@ -16,13 +16,13 @@
   <div class="form-group row">
     <label for="start_date" class="col-sm-2 col-form-label">Start Date</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" name="start_date" placeholder="YYYY-MM-dd HH:mm:ss" required />
+      <input type="text" class="form-control" name="start_date" value="<?php echo date('Y-m-d H:i:s', strtotime('now +1 minute')); ?>" placeholder="YYYY-MM-dd HH:mm:ss" required />
     </div>
   </div>
   <div class="form-group row">
     <label for="end_date" class="col-sm-2 col-form-label">End Date</label>
     <div class="col-sm-6">
-      <input type="text" class="form-control" name="end_date" placeholder="YYYY-MM-dd HH:mm:ss" required />
+      <input type="text" class="form-control" name="end_date" value="<?php echo date('Y-m-d H:i:s', strtotime('next week')); ?>" placeholder="YYYY-MM-dd HH:mm:ss" required />
     </div>
   </div>
   <div class="form-group row">

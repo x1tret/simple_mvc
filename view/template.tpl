@@ -12,7 +12,7 @@
     <header>
       <div class="container">
         <nav class="navbar navbar-expand-lg">
-          <div class="collapse navbar-collapse">
+          <div class="collapse navbar-collapse col col-md-6">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="/">Home</a>
@@ -27,7 +27,8 @@
               </div>
             </li>
           </ul>
-        </div>
+          </div>
+          <div class="float-right">Timezone: <?php echo Config::get('timezone'); ?></div>
         </nav>
       </div>
     </header>

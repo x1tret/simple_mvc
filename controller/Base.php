@@ -4,7 +4,7 @@ class BaseController extends Controller
 {
     public function __construct(Request $request)
     {
-        if ( ! $this->isWhiteList($request))
+        if ( ! Util::isWhiteList($request->addr))
             die('Access denied');
     }
 }

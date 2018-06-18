@@ -1,3 +1,5 @@
+<h1>Banner Management</h1>
+<br>
 <table class="table">
   <thead>
     <tr>
