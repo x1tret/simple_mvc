@@ -16,6 +16,7 @@ class Bootstrap
         $arr_abs = [
             'vendor/tavis/controller.php',
             'controller/Base.php',
+            'controller/Api.php',
             'vendor/tavis/db.php',
             'model/Base.php',
         ];
@@ -24,6 +25,7 @@ class Bootstrap
 
         $arr = [
             '/vendor/tavis/*.php',
+            '/controller/api/*.php',
             '/controller/*.php',
             '/model/*.php',
             '/util/*.php',

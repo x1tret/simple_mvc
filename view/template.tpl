@@ -45,7 +45,7 @@
             <?php echo $vdata['success']; ?>
           </div>
           <?php } ?>
-        <?php if(isset($vcontent)) include $vcontent; ?>
+        <?php if(isset($vcontent)) echo $vcontent; ?>
         </div>
       </div>
   </body>

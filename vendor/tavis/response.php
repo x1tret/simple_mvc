@@ -5,28 +5,36 @@
  **/
 class Response
 {
-    protected $view;
-    protected $data;
+    protected static $type;
+    protected $content;
 
-    public function __construct($view, $data)
+    public function __construct($content)
     {
-        $this->view = $view;
-        $this->data = $data;
+        $this->content = $content;
+    }
+
+    public static function setOption($opts)
+    {
+        self::$type = isset($opts['type']) ? $opts['type'] : 'html';
     }
 
     public function renderHtml($is_escape = true)
     {
         $ext = View::getExtension();
-        $vdata = $this->data;
-        if ($this->view)
-            $vcontent = DOC_ROOT . "/view/{$this->view}.$ext";
+        $vcontent = $this->content;
         include_once DOC_ROOT . "/view/template.$ext";
     }
 
-    public function send($type = 'html')
+    public function renderJson($is_escape = true)
     {
-        switch ($type) {
-            case 'json': break;
+        header('Content-type: application/json');
+        return $this->content;
+    }
+
+    public function send()
+    {
+        switch (self::$type) {
+            case 'json': echo $this->renderJson(); break;
             default: echo $this->renderHtml();
         }
     }

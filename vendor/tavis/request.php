@@ -38,8 +38,9 @@ class Request
     public function process()
     {
         $controller = new $this->controller($this);
-        list($view, $data) = call_user_func_array([$controller, $this->action], $this->params);
-        $response = new Response($view, $data);
+        $content = call_user_func_array([$controller, $this->action], $this->params);
+        $response = new Response($content);
+
         return $response;
     }
 
